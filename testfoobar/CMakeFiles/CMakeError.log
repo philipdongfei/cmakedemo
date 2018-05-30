@@ -1,0 +1,132 @@
+Determining if files ;winsock.h exist failed with the following output:
+Change Dir: /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c511d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c511d.dir/build.make CMakeFiles/cmTC_c511d.dir/build
+make[1]: Entering directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c511d.dir/CheckIncludeFiles.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_c511d.dir/CheckIncludeFiles.c.o   -c /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:2:21: fatal error: winsock.h: No such file or directory
+compilation terminated.
+CMakeFiles/cmTC_c511d.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_c511d.dir/CheckIncludeFiles.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_c511d.dir/CheckIncludeFiles.c.o] Error 1
+make[1]: Leaving directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_c511d/fast' failed
+make: *** [cmTC_c511d/fast] Error 2
+
+Source:
+/* */
+#include <winsock.h>
+
+
+int main(void){return 0;}
+
+Determining if files ;io.h exist failed with the following output:
+Change Dir: /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e7474/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e7474.dir/build.make CMakeFiles/cmTC_e7474.dir/build
+make[1]: Entering directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e7474.dir/CheckIncludeFiles.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_e7474.dir/CheckIncludeFiles.c.o   -c /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:2:16: fatal error: io.h: No such file or directory
+compilation terminated.
+CMakeFiles/cmTC_e7474.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_e7474.dir/CheckIncludeFiles.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_e7474.dir/CheckIncludeFiles.c.o] Error 1
+make[1]: Leaving directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_e7474/fast' failed
+make: *** [cmTC_e7474/fast] Error 2
+
+Source:
+/* */
+#include <io.h>
+
+
+int main(void){return 0;}
+
+Determining if the function gethostname exists in the usb;dl failed with the following output:
+Change Dir: /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a9fc1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a9fc1.dir/build.make CMakeFiles/cmTC_a9fc1.dir/build
+make[1]: Entering directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a9fc1.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=gethostname   -o CMakeFiles/cmTC_a9fc1.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a9fc1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a9fc1.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostname    CMakeFiles/cmTC_a9fc1.dir/CheckFunctionExists.c.o  -o cmTC_a9fc1 -rdynamic -lusb -ldl 
+/usr/bin/ld: cannot find -lusb
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_a9fc1.dir/build.make:97: recipe for target 'cmTC_a9fc1' failed
+make[1]: *** [cmTC_a9fc1] Error 1
+make[1]: Leaving directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a9fc1/fast' failed
+make: *** [cmTC_a9fc1/fast] Error 2
+
+
+Determining if the socket exist failed with the following output:
+Change Dir: /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_538b8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_538b8.dir/build.make CMakeFiles/cmTC_538b8.dir/build
+make[1]: Entering directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_538b8.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_538b8.dir/CheckSymbolExists.c.o   -c /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c:7:19: error: ‘socket’ undeclared (first use in this function)
+   return ((int*)(&socket))[argc];
+                   ^
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c:7:19: note: each undeclared identifier is reported only once for each function it appears in
+CMakeFiles/cmTC_538b8.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_538b8.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_538b8.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_538b8/fast' failed
+make: *** [cmTC_538b8/fast] Error 2
+
+File /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef socket
+  return ((int*)(&socket))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the poll exist failed with the following output:
+Change Dir: /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f4a59/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f4a59.dir/build.make CMakeFiles/cmTC_f4a59.dir/build
+make[1]: Entering directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f4a59.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_f4a59.dir/CheckSymbolExists.c.o   -c /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c:7:19: error: ‘poll’ undeclared (first use in this function)
+   return ((int*)(&poll))[argc];
+                   ^
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c:7:19: note: each undeclared identifier is reported only once for each function it appears in
+CMakeFiles/cmTC_f4a59.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_f4a59.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_f4a59.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f4a59/fast' failed
+make: *** [cmTC_f4a59/fast] Error 2
+
+File /home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef poll
+  return ((int*)(&poll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

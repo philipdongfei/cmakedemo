@@ -1,0 +1,2 @@
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/edit_cache.dir
+/home/philip/CodeDemo/cmakedemo/testfoobar/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,7 @@
+try_run (RUN_RESULT_VAR
+    COMPILE_RESULT_VAR
+    ${CMAKE_BINARY_DIR}
+    ${PROJECT_SOURCE_DIR}/Modules/TestByteOrder.c
+    OUTPUT_VARIABLE OUTPUT
+    )
+

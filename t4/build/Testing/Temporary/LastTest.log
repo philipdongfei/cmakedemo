@@ -1,0 +1,19 @@
+Start testing: May 16 10:37 DST
+----------------------------------------------------------
+1/1 Testing: mytest
+1/1 Test: mytest
+Command: "/home/philip/CodeDemo/cmakedemo/t4/bin/main"
+Directory: /home/philip/CodeDemo/cmakedemo/t4/build
+"mytest" start time: May 16 10:37 DST
+Output:
+----------------------------------------------------------
+Hello World
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"mytest" end time: May 16 10:37 DST
+"mytest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 16 10:37 DST
