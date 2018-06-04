@@ -1,0 +1,3 @@
+#cmakedefine HAS_FOOBAR_CALL
+
+#define PROJECT_BINARY_DIR "${PROJECT_BINARY_DIR}"

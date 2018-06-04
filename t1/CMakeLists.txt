@@ -13,6 +13,13 @@ if (DEBUG_BUILD)
 endif(DEBUG_BUILD)
 ADD_EXECUTABLE(hello ${SRC_LIST})
 
+configure_file (
+    ${PROJECT_SOURCE_DIR}/projectConfigure.h.in
+    ${PROJECT_SOURCE_DIR}/projectConfigure.h)
+
+if (HAS_FOOBAR_CALL)
+    message("HAS_FOOBAR_CALL is true")
+endif(HAS_FOOBAR_CALL)
 
 install (DIRECTORY  DESTINATION share/myproject/user)
 install (DIRECTORY data/scripts DESTINATION share/myproject
