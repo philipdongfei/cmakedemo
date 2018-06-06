@@ -11,6 +11,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.5.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.5.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.5.1/CMakeSystem.cmake"
+  "../projectConfigure.h.in"
   "/usr/share/cmake-3.5/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.5/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.5/Modules/CMakeCommonLanguageInclude.cmake"
@@ -18,6 +19,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.5/Modules/CMakeLanguageInformation.cmake"
   "/usr/share/cmake-3.5/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.5/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/usr/share/cmake-3.5/Modules/CPack.cmake"
+  "/usr/share/cmake-3.5/Modules/CPackComponent.cmake"
   "/usr/share/cmake-3.5/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.5/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.5/Modules/Compiler/GNU.cmake"
@@ -26,6 +29,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.5/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-3.5/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-3.5/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake-3.5/Templates/CPackConfig.cmake.in"
   )
 
 # The corresponding makefile is:
@@ -36,6 +40,9 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "../projectConfigure.h"
+  "CPackConfig.cmake"
+  "CPackSourceConfig.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

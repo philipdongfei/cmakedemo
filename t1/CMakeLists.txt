@@ -12,6 +12,19 @@ if (DEBUG_BUILD)
     add_definitions(-DDEBUG_BUILD)
 endif(DEBUG_BUILD)
 ADD_EXECUTABLE(hello ${SRC_LIST})
+if (CMAKE_SYSTEM MATCHES Windows)
+    message(STATUS "Target system is Windows")
+endif()
+if (CMAKE_HOST_SYSTEM MATCHES Linux)
+    message(STATUS "Build host runs Linux")
+endif()
+
+message("${CMAKE_SYSTEM_NAME}-COMPILER_ID-${CMAKE_SYSTEM_PROCESSOR}.cmake")
+
+#get_target_property (hello EXE_LOC LOCATION)
+#set(EXE_LOC ${ARCHIVE_OUTPUT_DIRECTORY})
+#message("EXE_LOC" ${EXE_LOC})
+
 
 configure_file (
     ${PROJECT_SOURCE_DIR}/projectConfigure.h.in
@@ -20,6 +33,7 @@ configure_file (
 if (HAS_FOOBAR_CALL)
     message("HAS_FOOBAR_CALL is true")
 endif(HAS_FOOBAR_CALL)
+message("CMAKE_CFG_INTDIR:"${CMAKE_CFG_INTDIR})
 
 install (DIRECTORY  DESTINATION share/myproject/user)
 install (DIRECTORY data/scripts DESTINATION share/myproject
@@ -38,4 +52,4 @@ install (DIRECTORY data/icons DESTINATION share/myproject
     PATTERN "*.sh"
       PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
 install (SCRIPT message.cmake)
-
+include (CPack)

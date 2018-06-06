@@ -1,7 +1,9 @@
-/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/install.dir
-/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/list_install_components.dir
+/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/edit_cache.dir
 /home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/rebuild_cache.dir
+/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/package.dir
+/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/package_source.dir
 /home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/hello.dir
+/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/list_install_components.dir
+/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/install.dir
 /home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/install/strip.dir
 /home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/install/local.dir
-/home/philip/CodeDemo/cmakedemo/t1/build/CMakeFiles/edit_cache.dir
