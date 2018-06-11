@@ -29,5 +29,6 @@ int main (int argc, char *argv[])
 #endif
     fprintf(stdout, "The square root of %g is %g\n",
             inputValue, outputValue);
+    fprintf(stdout, "log:%g\n",log(inputValue));
     return 0;
 }

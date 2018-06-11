@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.2)
+cmake_minimum_required (VERSION 2.6)
 project (Tutorial)
 
 # The version number.
@@ -11,6 +11,21 @@ configure_file (
     "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
     "${PROJECT_BINARY_DIR}/TutorialConfig.h"
     )
+# does this system provide the log and exp functions?
+#include (CheckFunctionExists.cmake)
+include (CheckFunctionExists)
+include (CheckLibraryExists)
+check_library_exists(rt log "math.h" HAVE_LOG)
+check_library_exists(rt exp "math.h" HAVE_EXP)
+if (NOT HAVE_LOG)
+check_function_exists (log HAVE_LOG)
+endif(NOT HAVE_LOG)
+if (NOT HAVE_EXP)
+check_function_exists (exp HAVE_EXP)
+endif(NOT HAVE_EXP)
+
+check_function_exists (sqrt HAVE_SQRT)
+
 ENABLE_TESTING()
 
 
