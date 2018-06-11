@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "projectConfigure.h"
 
 int main(void)
@@ -9,6 +10,17 @@ int main(void)
     int v = 10;
     printf("the value of v is %d\n", v);
 #endif
+    int i = 0, t=0;
+    for(; i<100; i++)
+        t += i;
+    printf("t=%d\n", t);
+    printf("All ok\n");
+    char *pBuf = (char*)malloc(1024);
+    memset(pBuf,0x0,1024);
+    sprintf(pBuf,"test a cdash\n");
+    printf("%s", pBuf);
+    free(pBuf);
+
     return 0;
 }
 

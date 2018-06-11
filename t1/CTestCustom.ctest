@@ -1,0 +1,21 @@
+set (CTEST_CUSTOM_WARNING_MATCH
+  ${CTEST_CUSTOM_WARNING_MATCH}
+  "{standard input}:[0-9][0-9]*: Warning: "
+  )
+
+set (CTEST_CUSTOM_WARNING_EXCEPTION
+  ${CTEST_CUSTOM_WARNING_EXCEPTION}
+  "tk8.4.5/[^/]+/[^/]+.c[:\"]"
+  "xtree.[0-9]+. : warning C4702: unreachable code"
+  "warning LNK4221"
+  "variable .var_args[2]*. is used before its value is set"
+  "jobserver unavailable"
+  )
+set (CTEST_CUSTOM_MEMCHECK_IGNORE
+  ${CTEST_CUSTOM_MEMCHECK_IGNORE}
+  TestSetGet
+  otherPrint-ParaView
+  Example-vtkLocal
+  Example-vtkMy
+  )
+
