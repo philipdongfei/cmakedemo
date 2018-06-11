@@ -13,13 +13,15 @@ double mysqrt(double inValue)
     result = exp(log(inValue)*0.5);
 #else
     printf("have not log&exp\n");
-    for(int i = 1; i<=inValue/2; i++)
+/*    for(int i = 1; i<=inValue/2; i++)
     {
         if (inValue == i*i)
         {
             result = i;
         }
     }
+    */
+    result = sqrt(inValue);
 #endif
     return result;
 }
