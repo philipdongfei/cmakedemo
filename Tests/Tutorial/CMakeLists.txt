@@ -13,16 +13,8 @@ configure_file (
     )
 # does this system provide the log and exp functions?
 #include (CheckFunctionExists.cmake)
-include (CheckFunctionExists)
-include (CheckLibraryExists)
-check_library_exists(rt log "math.h" HAVE_LOG)
-check_library_exists(rt exp "math.h" HAVE_EXP)
-if (NOT HAVE_LOG)
+include (${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
 check_function_exists (log HAVE_LOG)
-endif(NOT HAVE_LOG)
-if (NOT HAVE_EXP)
-check_function_exists (exp HAVE_EXP)
-endif(NOT HAVE_EXP)
 
 check_function_exists (sqrt HAVE_SQRT)
 
@@ -84,4 +76,12 @@ endmacro (do_test)
 ## do a bunch of result based tests
 do_test (25 "25 is 5")
 do_test (-25 "-25 is 0")
+do_test (4 "4 is 2")
+do_test (9 "9 is 3")
+do_test (5 "5 is 2.236")
+do_test (7 "7 is 2.645")
+do_test (25 "25 is 5")
+do_test (-25 "-25 is 0")
+do_test (0.0001 "0.0001 is 0.01")
+
 
