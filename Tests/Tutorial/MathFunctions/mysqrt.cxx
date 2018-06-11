@@ -3,5 +3,7 @@
 
 double mysqrt(double inValue)
 {
-    return sqrt(inValue)+sqrt(inValue);
+    if (inValue <= 0)
+        return 0;
+    return sqrt(inValue);
 }
