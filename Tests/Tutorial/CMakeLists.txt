@@ -11,6 +11,8 @@ configure_file (
     "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
     "${PROJECT_BINARY_DIR}/TutorialConfig.h"
     )
+ENABLE_TESTING()
+
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
@@ -64,7 +66,7 @@ macro (do_test arg result)
     set_tests_properties (TutorialComp${arg}
         PROPERTIES PASS_REGULAR_EXPRESSION ${result})
 endmacro (do_test)
-# do a bunch of result based tests
+## do a bunch of result based tests
 do_test (25 "25 is 5")
 do_test (-25 "-25 is 0")
 
