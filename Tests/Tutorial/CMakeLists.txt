@@ -11,6 +11,9 @@ configure_file (
     "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
     "${PROJECT_BINARY_DIR}/TutorialConfig.h"
     )
+# enable dashboard scripting
+include (CTest)
+
 # does this system provide the log and exp functions?
 #include (CheckFunctionExists.cmake)
 include (${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
