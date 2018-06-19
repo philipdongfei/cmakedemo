@@ -33,7 +33,7 @@ void err_dump(const char *fmt, ...)
     exit(1);
 }
 
-void err_msg(cosnt char *fmt, ...)
+void err_msg(const char *fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
