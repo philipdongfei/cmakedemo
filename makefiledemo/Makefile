@@ -3,21 +3,22 @@ objects = main.o kbd.o command.o display.o \
 
 edit: $(objects)
 	cc -o edit $(objects)
-main.o: main.c defs.h
+main.o:  defs.h
 	cc -c main.c
-kbd.o: kbd.c defs.h command.h
+kbd.o:  defs.h command.h
 	cc -c kbd.c
-command.o: command.c defs.h command.h
+command.o:  defs.h command.h
 	cc -c command.c
-display.o: display.c defs.h buffer.h
+display.o:  defs.h buffer.h
 	cc -c display.c
-insert.o: insert.c defs.h buffer.h
+insert.o:  defs.h buffer.h
 	cc -c insert.c
-search.o: search.c defs.h buffer.h
+search.o:  defs.h buffer.h
 	cc -c search.c
-files.o: files.c defs.h buffer.h command.h
+files.o:  defs.h buffer.h command.h
 	cc -c files.c
-utils.o: utils.c defs.h
+utils.o:  defs.h
 	cc -c utils.c 
+.PHONY: clean
 clean:
 	rm edit $(objects)
