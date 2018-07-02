@@ -22,7 +22,7 @@ int main()
     for (i=1; i<=100; i++)
         result += i;
 
-    printf("result[1-100] = %i \n", result);
+    printf("result[1-100] = %i \n", (int)result);
     printf("result[1-250] = %d \n", func(250));
 }
 
