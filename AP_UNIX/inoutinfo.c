@@ -27,10 +27,10 @@ int main(void)
 void pr_stdio(const char *name, FILE *fp)
 {
     printf("stream = %s, ", name);
-    if (fp->_flag & _IONBF) printf("unbuffered");
-    else if (fp->_flag & _IOLBF) printf("line buffered");
+    if (fp->_flags & _IONBF) printf("unbuffered");
+    else if (fp->_flags & _IOLBF) printf("line buffered");
     else                        
         printf("fully buffered");
-    printf(", buffer size = %d\n", fp->_bufsize);
+    printf(", buffer size = %d\n", fp->_bufsiz);
 }
 
