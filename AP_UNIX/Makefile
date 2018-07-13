@@ -17,7 +17,10 @@ jmp_demo: jmp_demo.c ourhdr.c
 	cc -o jmp_demo2.out -O2 jmp_demo.c ourhdr.c
 pr_lim: pr_limit.c ourhdr.c
 	cc -o pr_lim.out -O2 pr_limit.c ourhdr.c
-
+fork_demo: fork_demo.c ourhdr.c
+	cc -o fork_demo.out -O2 fork_demo.c ourhdr.c
+vfork-demo: vfork-demo.c ourhdr.c
+	cc -o vfork-demo.out -O2 vfork-demo.c ourhdr.c
 
 .PHONY: clean
 clean:
