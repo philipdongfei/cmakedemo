@@ -1,4 +1,4 @@
-TOOL := ourhdr.h ourhdr.c func.c
+TOOL := ourhdr.h ourhdr.c func.c system-func.c
 
 iterdir: iterdir.c ourhdr.c func.c
 	cc -o iterdir.out -O2 iterdir.c ourhdr.c func.c
@@ -35,6 +35,15 @@ exec-demo: echoall.c exec-demo.c ourhdr.c
 	cc -o exec-demo.out -O2 exec-demo.c ourhdr.c
 parser-demo: parser-demo.c ourhdr.c
 	cc -o parser-demo.out -O2 parser-demo.c ourhdr.c
+system-demo: system-demo.c system-func.c ${TOOL}
+	cc -o system-demo.out -O2 system-demo.c system-func.c ${TOOL}
+tsys: tsys.c ${TOOL}
+	cc -o tsys.out -O2 tsys.c ${TOOL}
+prRealID: prRealID.c  ourhdr.c
+	cc -o printuids.out -O2 prRealID.c ourhdr.c 
+account-demo: account-demo.c ourhdr.c
+	cc -o account-demo.out -O2 account-demo.c ourhdr.c
+
 
 .PHONY: clean
 clean:
