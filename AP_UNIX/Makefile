@@ -1,3 +1,5 @@
+TOOL := ourhdr.h ourhdr.c func.c
+
 iterdir: iterdir.c ourhdr.c func.c
 	cc -o iterdir.out -O2 iterdir.c ourhdr.c func.c
 mycd: mycd.c ourhdr.c
@@ -21,6 +23,18 @@ fork_demo: fork_demo.c ourhdr.c
 	cc -o fork_demo.out -O2 fork_demo.c ourhdr.c
 vfork-demo: vfork-demo.c ourhdr.c
 	cc -o vfork-demo.out -O2 vfork-demo.c ourhdr.c
+exit-demo: exit-demo.c ${TOOL}
+	cc -o exit-demo.out -O2 exit-demo.c ${TOOL}
+double-fork: double-fork.c ${TOOL}
+	cc -o double-fork.out -O2 double-fork.c ourhdr.c
+race-fork: race-fork ${TOOL}
+	cc -o race-fork.out -O2 race-fork.c ourhdr.h ourhdr.c
+exec-demo: echoall.c exec-demo.c ourhdr.c
+	cc -o echoall.out -O2 echoall.c ourhdr.c
+	sudo mv echoall.out /home/philip/bin
+	cc -o exec-demo.out -O2 exec-demo.c ourhdr.c
+parser-demo: parser-demo.c ourhdr.c
+	cc -o parser-demo.out -O2 parser-demo.c ourhdr.c
 
 .PHONY: clean
 clean:

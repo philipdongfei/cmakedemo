@@ -1,5 +1,7 @@
 #include <errno.h>
 #include <limits.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "ourhdr.h"
 
 #ifdef PATH_MAX
@@ -55,3 +57,20 @@ int open_max(void)
     return (openmax);
 }
 
+void pr_exit(int status)
+{
+    if (WIFEXITED(status))
+        printf("normal terminatiion, exit status = %d\n", 
+                WEXITSTATUS(status));
+    else if (WIFSIGNALED(status))
+        printf("abnormal termination, signal number = %d%s\n",
+                WTERMSIG(status),
+#ifdef WCOREDUMP
+                WCOREDUMP(status) ? " (core file generated) " : "");
+#else
+                "");
+#endif
+    else if (WIFSTOPPED(status))
+        printf("child stopped, signal number = %d\n",
+                WSTOPSIG(status));
+}

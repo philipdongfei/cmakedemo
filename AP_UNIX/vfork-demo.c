@@ -16,7 +16,7 @@ int main(void)
     else  if (pid == 0) {
         glob++;
         var++;
-        exit(0);//_exit(0);
+        _exit(0);//_exit(0);
     }
     /*parent */
     printf("pid = %d, glob = %d, var = %d\n", getpid(), glob, var);
