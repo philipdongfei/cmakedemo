@@ -43,7 +43,12 @@ prRealID: prRealID.c  ourhdr.c
 	cc -o printuids.out -O2 prRealID.c ourhdr.c 
 account-demo: account-demo.c ourhdr.c
 	cc -o account-demo.out -O2 account-demo.c ourhdr.c
-
+pr-account: pr-account.c ourhdr.c
+	cc -o pr-account.out -O2 pr-account.c ourhdr.c
+times-demo: times-demo.c ${TOOL} 
+	cc -o times-demo.out -O2 times-demo.c ${TOOL} 
+orphanedProcess: orphanedProcess.c ourhdr.c
+	cc -o orphanedProcess.out -O2 orphanedProcess.c ourhdr.c
 
 .PHONY: clean
 clean:
