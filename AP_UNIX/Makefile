@@ -49,6 +49,14 @@ times-demo: times-demo.c ${TOOL}
 	cc -o times-demo.out -O2 times-demo.c ${TOOL} 
 orphanedProcess: orphanedProcess.c ourhdr.c
 	cc -o orphanedProcess.out -O2 orphanedProcess.c ourhdr.c
+signal-simple: signal-simple.c ourhdr.h ourhdr.c
+	cc -o signal-simple.out -O2 signal-simple.c ourhdr.h ourhdr.c
+reentrant-demo: reentrant-demo.c ourhdr.h ourhdr.c
+	cc -o reentrant-demo.out -O2 reentrant-demo.c ourhdr.c
+sigcld-demo:  sigcld-demo.c 
+	cc -o  sigcld-demo.out -O2 sigcld-demo.c 
+do-sleep2: do-sleep2.c sleep2-demo.c ourhdr.c
+	cc -o do-sleep2.out -O2 do-sleep2.c sleep2-demo.c ourhdr.c
 
 .PHONY: clean
 clean:
