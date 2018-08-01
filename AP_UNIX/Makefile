@@ -57,6 +57,14 @@ sigcld-demo:  sigcld-demo.c
 	cc -o  sigcld-demo.out -O2 sigcld-demo.c 
 do-sleep2: do-sleep2.c sleep2-demo.c ourhdr.c
 	cc -o do-sleep2.out -O2 do-sleep2.c sleep2-demo.c ourhdr.c
+read-time: read-time.c ourhdr.c
+	cc -o read-time.out -O2 read-time.c ourhdr.c
+read-demo: read-demo.c ourhdr.c
+	cc -o read-demo.out -O2 read-demo.c ourhdr.c
+sig_mask_demo: sig_mask_demo.c ourhdr.h ourhdr.c
+	cc -o sig_mask_demo.out -O2 sig_mask_demo.c ourhdr.c
+
+
 
 .PHONY: clean
 clean:
