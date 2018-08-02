@@ -63,7 +63,14 @@ read-demo: read-demo.c ourhdr.c
 	cc -o read-demo.out -O2 read-demo.c ourhdr.c
 sig_mask_demo: sig_mask_demo.c ourhdr.h ourhdr.c
 	cc -o sig_mask_demo.out -O2 sig_mask_demo.c ourhdr.c
-
+sig-jmp: sig-jmp.c sig_func.c ourhdr.h ourhdr.c
+	cc -o sig-jmp.out -O2 sig-jmp.c sig_func.c ourhdr.c
+sig-jmp-ex: sig-jmp-ex.c sig_func.c ourhdr.h ourhdr.c
+	cc -o sig-jmp-ex.out -O2 sig-jmp-ex.c sig_func.c ourhdr.c
+sigsuspend-demo: sigsuspend-demo.c sig_func.c ourhdr.h ourhdr.c
+	cc -o sigsuspend-demo.out -O2 sigsuspend-demo.c sig_func.c ourhdr.c
+sigsuspend-global: sigsuspend-global.c sig_func.c ourhdr.h ourhdr.c
+	cc -o sigsuspend-global.out -O2 sigsuspend-global.c sig_func.c ourhdr.c
 
 
 .PHONY: clean
