@@ -35,8 +35,8 @@ exec-demo: echoall.c exec-demo.c ourhdr.c
 	cc -o exec-demo.out -O2 exec-demo.c ourhdr.c
 parser-demo: parser-demo.c ourhdr.c
 	cc -o parser-demo.out -O2 parser-demo.c ourhdr.c
-system-demo: system-demo.c system-func.c ${TOOL}
-	cc -o system-demo.out -O2 system-demo.c system-func.c ${TOOL}
+system-demo: system-demo.c ystem.c ourhdr.c func.c 
+	cc -o system-demo.out -O2 system-demo.c ystem.c func.c ourhdr.c 
 tsys: tsys.c ${TOOL}
 	cc -o tsys.out -O2 tsys.c ${TOOL}
 prRealID: prRealID.c  ourhdr.c
@@ -71,7 +71,8 @@ sigsuspend-demo: sigsuspend-demo.c sig_func.c ourhdr.h ourhdr.c
 	cc -o sigsuspend-demo.out -O2 sigsuspend-demo.c sig_func.c ourhdr.c
 sigsuspend-global: sigsuspend-global.c sig_func.c ourhdr.h ourhdr.c
 	cc -o sigsuspend-global.out -O2 sigsuspend-global.c sig_func.c ourhdr.c
-
+system-ed: system-ed.c ourhdr.c
+	cc -o system-ed.out -O2 system-ed.c ourhdr.c
 
 .PHONY: clean
 clean:
