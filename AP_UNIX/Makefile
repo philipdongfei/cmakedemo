@@ -73,6 +73,8 @@ sigsuspend-global: sigsuspend-global.c sig_func.c ourhdr.h ourhdr.c
 	cc -o sigsuspend-global.out -O2 sigsuspend-global.c sig_func.c ourhdr.c
 system-ed: system-ed.c ourhdr.c
 	cc -o system-ed.out -O2 system-ed.c ourhdr.c
+sigtstp-demo: sigtstp-demo.c ourhdr.h ourhdr.c
+	cc -o sigtstp-demo.out  -O2 sigtstp-demo.c ourhdr.c
 
 .PHONY: clean
 clean:
