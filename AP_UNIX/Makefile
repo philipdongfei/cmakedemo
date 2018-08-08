@@ -75,6 +75,14 @@ system-ed: system-ed.c ourhdr.c
 	cc -o system-ed.out -O2 system-ed.c ourhdr.c
 sigtstp-demo: sigtstp-demo.c ourhdr.h ourhdr.c
 	cc -o sigtstp-demo.out  -O2 sigtstp-demo.c ourhdr.c
+change-intr:  change-intr.c ourhdr.c
+	cc -o change-intr.out -O2 change-intr.c ourhdr.c
+tcgetattr-demo: tcgetattr-demo.c ourhdr.c
+	cc -o tcgetattr-demo.out -O2 tcgetattr-demo.c ourhdr.c
+test_isatty: test_isatty.c ourhdr.c
+	cc -o test_isatty.out -O2 test_isatty.c ourhdr.c
+test_ttyname: test_ttyname.c term-func.c ourhdr.c
+	cc -o test_ttyname.out -O2 test_ttyname.c term-func.c ourhdr.c
 
 .PHONY: clean
 clean:
