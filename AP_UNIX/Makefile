@@ -1,5 +1,8 @@
 TOOL := ourhdr.h ourhdr.c func.c system-func.c
 
+
+
+
 iterdir: iterdir.c ourhdr.c func.c
 	cc -o iterdir.out -O2 iterdir.c ourhdr.c func.c
 mycd: mycd.c ourhdr.c
@@ -83,6 +86,16 @@ test_isatty: test_isatty.c ourhdr.c
 	cc -o test_isatty.out -O2 test_isatty.c ourhdr.c
 test_ttyname: test_ttyname.c term-func.c ourhdr.c
 	cc -o test_ttyname.out -O2 test_ttyname.c term-func.c ourhdr.c
+getpass-demo: getpass-demo.c ourhdr.c
+	cc -o getpass-demo.out  -O2 getpass-demo.c term-func.c ourhdr.c
+sig-rawcb:    sig-raw-cbreak.c term-func.c ourhdr.c
+	cc -o sig-rawcb.out -O2 sig-raw-cbreak.c term-func.c ourhdr.c
+print-wnsz: print-size.c ourhdr.c
+	cc -o print-winsz.out -O2 print-size.c ourhdr.c
+
+
+
+
 
 .PHONY: clean
 clean:
