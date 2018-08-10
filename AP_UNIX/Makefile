@@ -92,6 +92,16 @@ sig-rawcb:    sig-raw-cbreak.c term-func.c ourhdr.c
 	cc -o sig-rawcb.out -O2 sig-raw-cbreak.c term-func.c ourhdr.c
 print-wnsz: print-size.c ourhdr.c
 	cc -o print-winsz.out -O2 print-size.c ourhdr.c
+nonblock-write: nonblock-write.c file-func.c ourhdr.c
+	cc -o nonblock-write.out -O2 nonblock-write.c file-func.c ourhdr.c
+deadlock-demo: deadlock-demo.c signal-sync.c lock-func.c ourhdr.c
+	cc -o deadlock-demo.out -O2 deadlock-demo.c  signal-sync.c lock-func.c ourhdr.c
+daemon-lock: daemon-lock.c lock-func.c ourhdr.c
+	cc -o daemon-lock.out -O2 daemon-lock.c lock-func.c ourhdr.c
+lck-file: lck-file.c lock-func.c ourhdr.c
+	cc -o lck-file.out -O2 lck-file.c lock-func.c ourhdr.c
+chk-lck: chk-lck.c signal-sync.c file-func.c lock-func.c ourhdr.c
+	cc -o chk-lck.out -O2 chk-lck.c signal-sync.c file-func.c lock-func.c ourhdr.c
 
 
 
