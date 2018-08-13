@@ -102,6 +102,14 @@ lck-file: lck-file.c lock-func.c ourhdr.c
 	cc -o lck-file.out -O2 lck-file.c lock-func.c ourhdr.c
 chk-lck: chk-lck.c signal-sync.c file-func.c lock-func.c ourhdr.c
 	cc -o chk-lck.out -O2 chk-lck.c signal-sync.c file-func.c lock-func.c ourhdr.c
+test-isastream: test-isastream.c stream-func.c ourhdr.h ourhdr.c
+	cc -o test-isastream.out -O2 test-isastream.c stream-func.c ourhdr.c
+pr-stream: pr-stream.c stream-func.c ourhdr.h ourhdr.c
+	cc -o pr-stream.out -O2 pr-stream.c stream-func.c ourhdr.h ourhdr.c
+getmsg-demo: getmsg-demo.c ourhdr.c 
+	cc -o getmsg-demo.out -O2 getmsg-demo.c ourhdr.c
+
+
 
 
 
