@@ -108,6 +108,8 @@ pr-stream: pr-stream.c stream-func.c ourhdr.h ourhdr.c
 	cc -o pr-stream.out -O2 pr-stream.c stream-func.c ourhdr.h ourhdr.c
 getmsg-demo: getmsg-demo.c ourhdr.c 
 	cc -o getmsg-demo.out -O2 getmsg-demo.c ourhdr.c
+mmap-demo: mmap-demo.c ourhdr.h ourhdr.c
+	cc -o mmap-demo.out -O2 mmap-demo.c ourhdr.c
 
 
 
