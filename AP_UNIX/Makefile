@@ -110,6 +110,9 @@ getmsg-demo: getmsg-demo.c ourhdr.c
 	cc -o getmsg-demo.out -O2 getmsg-demo.c ourhdr.c
 mmap-demo: mmap-demo.c ourhdr.h ourhdr.c
 	cc -o mmap-demo.out -O2 mmap-demo.c ourhdr.c
+test-daemon: test-daemon.c daemon-func.c ourhdr.h ourhdr.c
+	cc -o test-daemon.out -O2 test-daemon.c daemon-func.c ourhdr.h ourhdr.c
+
 
 
 
