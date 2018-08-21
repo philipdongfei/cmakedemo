@@ -132,6 +132,12 @@ fifo-writes: fifo-writes.c
 	cc -o fifo-writes.out -O2 fifo-writes.c
 fifo-reads: fifo-reads.c
 	cc -o fifo-reads.out -O2 fifo-reads.c
+print_addr: print_addr.c ourhdr.h ourhdr.c
+	cc -o print_addr.out -O2 print_addr.c ourhdr.h ourhdr.c
+ipc_dev: ipc_dev.c signal-sync.c ourhdr.h ourhdr.c
+	cc -o ipc_dev.out -O2 ipc_dev.c signal-sync.c ourhdr.h ourhdr.c
+ipc_anonymous: ipc_anonymous.c signal-sync.c ourhdr.h ourhdr.c
+	cc -o ipc_anonymous.out -O2 ipc_anonymous.c signal-sync.c ourhdr.h ourhdr.c
 
 
 .PHONY: clean
