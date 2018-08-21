@@ -112,12 +112,26 @@ mmap-demo: mmap-demo.c ourhdr.h ourhdr.c
 	cc -o mmap-demo.out -O2 mmap-demo.c ourhdr.c
 test-daemon: test-daemon.c daemon-func.c ourhdr.h ourhdr.c
 	cc -o test-daemon.out -O2 test-daemon.c daemon-func.c ourhdr.h ourhdr.c
-
-
-
-
-
-
+pipe-f2s: pipe-f2s.c ourhdr.h ourhdr.c
+	cc -o pipe-f2s.out -O2 pipe-f2s.c ourhdr.h ourhdr.c
+file2pager: file2pager.c ourhdr.h ourhdr.c
+	cc -o file2pager.out -O2 file2pager.c ourhdr.h ourhdr.c
+file2popen: file2popen.c ourhdr.h ourhdr.c
+	cc -o file2popen.out -O2 file2popen.c ourhdr.h ourhdr.c
+filter_char: filter_char.c ourhdr.h ourhdr.c
+	cc -o filter_char.out -O2 filter_char.c ourhdr.h ourhdr.c
+exec_myuclc: exec_myuclc.c ourhdr.h ourhdr.c
+	cc -o exec_myuclc.out -O2 exec_myuclc.c ourhdr.h ourhdr.c
+add2: add2.c ourhdr.h ourhdr.c
+	cc -o add2 -O2 add2.c ourhdr.h ourhdr.c
+exec_add2: exec_add2.c ourhdr.h ourhdr.c
+	cc -o exec_add2.out -O2 exec_add2.c ourhdr.h ourhdr.c
+add2_standardIO: add2_standardIO.c ourhdr.h ourhdr.c
+	cc -o add2 -O2 add2_standardIO.c ourhdr.h ourhdr.c
+fifo-writes: fifo-writes.c
+	cc -o fifo-writes.out -O2 fifo-writes.c
+fifo-reads: fifo-reads.c
+	cc -o fifo-reads.out -O2 fifo-reads.c
 
 
 .PHONY: clean
