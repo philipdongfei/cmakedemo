@@ -138,6 +138,8 @@ ipc_dev: ipc_dev.c signal-sync.c ourhdr.h ourhdr.c
 	cc -o ipc_dev.out -O2 ipc_dev.c signal-sync.c ourhdr.h ourhdr.c
 ipc_anonymous: ipc_anonymous.c signal-sync.c ourhdr.h ourhdr.c
 	cc -o ipc_anonymous.out -O2 ipc_anonymous.c signal-sync.c ourhdr.h ourhdr.c
+spipe_add2: spipe_add2.c spipe_func.c ourhdr.h ourhdr.c
+	cc -o spipe_add2.out -O2 spipe_add2.c spipe_func.c ourhdr.c
 
 
 .PHONY: clean
