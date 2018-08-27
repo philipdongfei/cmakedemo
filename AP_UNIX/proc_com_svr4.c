@@ -13,7 +13,7 @@ send_err(int clifd, int errcode, const char *msg)
     int     n;
 
     if ((n == strlen(msg)) > 0)
-        if (writen(clifd, msg, n) != n)  /* send the error message */
+        if (write(clifd, msg, n) != n)  /* send the error message */
             return (-1);
     
     if (errcode >= 0)

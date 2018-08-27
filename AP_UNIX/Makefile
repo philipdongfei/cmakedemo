@@ -140,6 +140,11 @@ ipc_anonymous: ipc_anonymous.c signal-sync.c ourhdr.h ourhdr.c
 	cc -o ipc_anonymous.out -O2 ipc_anonymous.c signal-sync.c ourhdr.h ourhdr.c
 spipe_add2: spipe_add2.c spipe_func.c ourhdr.h ourhdr.c
 	cc -o spipe_add2.out -O2 spipe_add2.c spipe_func.c ourhdr.c
+open-cli: open-cli.c open.h open.c ourhdr.h ourhdr.c spipe_func.c proc_com_43pbds.c
+	cc -o open-cli.out -O2 open-cli.c ourhdr.h ourhdr.c open.h open.c spipe_func.c proc_com_43pbds.c 
+open-server: open-server.c opend.h opend.c proc_com_43pbds.c spipe_func.c ourhdr.h ourhdr.c 
+	cc -o opend -O2 open-server.c opend.h opend.c proc_com_43pbds.c spipe_func.c ourhdr.h ourhdr.c
+
 
 
 .PHONY: clean

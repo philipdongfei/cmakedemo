@@ -63,9 +63,9 @@ recv_fd(int servfd, ssize_t (*userfunc)(int, const void *, size_t))
         msg.msg_iov = iov;
         msg.msg_iovlen = 1;
         msg.msg_name = NULL;
-        msg_msg_namelen = 0;
+        msg.msg_namelen = 0;
         msg.msg_accrights = (caddr_t)&newfd;  /* addr of descriptor */
-        msg_msg_accrightlen = sizeof(int);  /* receive 1 descriptor */
+        msg.msg_accrightslen = sizeof(int);  /* receive 1 descriptor */
 
         if ((nread = recvmsg(servfd, &msg, 0)) < 0)
             err_sys("recvmsg error");
