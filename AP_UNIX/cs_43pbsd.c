@@ -25,9 +25,12 @@ serv_listen(const char *name)
     unix_addr.sun_family = AF_UNIX;
     strcpy(unix_addr.sun_path, name);
 #ifdef  SCM_RIGHTS      /* 4.3BSD Reno and later */
-    len = sizeof(unix_addr.sun_len) + sizeof(unix_addr.sun_family) +
+    /*
+     * len = sizeof(unix_addr.sun_len) + sizeof(unix_addr.sun_family) +
         strlen(unix_addr.sun_path) + 1;
     unix_addr.sun_len = len;
+    */
+    len = strlen(unix_addr.sun_path) + sizeof(unix_addr.sun_family);
 #else
     len = strlen(unix_addr.sun_path) + sizeof(unix_addr.sun_family);
 #endif
@@ -62,9 +65,14 @@ cli_conn(const char *name)
     unix_addr.sun_family = AF_UNIX;
     sprintf(unix_addr.sun_path, "%s%05d", CLI_PATH, getpid());
 #ifdef  SCM_RIGHTS  /* 4.3BSD Reno and later */
-    len = sizeof(unix_addr.sun_len) + sizeof(unix_addr.sun_family) + 
+    /*
+     * len = sizeof(unix_addr.sun_len) + sizeof(unix_addr.sun_family) + 
         strlen(unix_addr.sun_path) + 1;
     unix_addr.sun_len = len;
+    */
+    len = strlen(unix_addr.sun_path) + sizeof(unix_addr.sun_family);
+    if (len != 16)
+        err_quit("length != 16");    /* hack */
 #else       /* vanilla 4.3BSD */
     len = strlen(unix_addr.sun_path) + sizeof(unix_addr.sun_family);
     if (len != 16)
@@ -82,9 +90,12 @@ cli_conn(const char *name)
     unix_addr.sun_family = AF_UNIX;
     strcpy(unix_addr.sun_path, name);
 #ifdef  SCM_RIGHTS   /* 4.3BSD Reno and later */
-    len = sizeof(unix_addr.sun_len) + sizeof(unix_addr.sun_family) + 
+    /*
+     * len = sizeof(unix_addr.sun_len) + sizeof(unix_addr.sun_family) + 
         strlen(unix_addr.sun_path) + 1;
     unix_addr.sun_len = len;
+    */
+    len = strlen(unix_addr.sun_path) + sizeof(unix_addr.sun_family);
 #else     /* vanilla 4.3BSD */
     len = strlen(unix_addr.sun_path) + sizeof(unix_addr.sun_family);
 #endif
@@ -117,7 +128,8 @@ serv_accept(int listenfd, uid_t *uidptr)
 
                 /* obtain the client's uid from its calling address */
 #ifdef  SCM_RIGHTS    /* 4.3BSD Reno and later */
-    len -= sizeof(unix_addr.sun_len) - sizeof(unix_addr.sun_family);
+    //len -= sizeof(unix_addr.sun_len) - sizeof(unix_addr.sun_family);
+    len -= sizeof(unix_addr.sun_family);   /* len of pathname */
 #else       /* vanilla 4.3BSD */
     len -= sizeof(unix_addr.sun_family);   /* len of pathname */
 #endif
