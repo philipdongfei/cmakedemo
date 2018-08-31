@@ -149,8 +149,8 @@ cli-daemon: open-cli.c open.h open-daemon.c ourhdr.h ourhdr.c spipe_func.c cs_43
 	cc -o cli-daemon.out -O2 open-cli.c open-daemon.c ourhdr.c spipe_func.c cs_43pbsd.c proc_com_43pbds.c 
 ser-daemon: opend-daemonServ.c  opend-daemon.h opend-daemon.c log-daemon.c proc_com_43pbds.c cs_43pbsd.c spipe_func.c opend-select.c opend-request.c daemon-func.c ourhdr.h ourhdr.c
 	cc -o opend -O2 opend-daemonServ.c opend-daemon.h opend-daemon.c log-daemon.c proc_com_43pbds.c cs_43pbsd.c opend-select.c opend-request.c daemon-func.c ourhdr.h ourhdr.c
-db-create: db-create.c db.h db.c ourhdr.h ourhdr.c
-	cc -o db-create.out -O2 db-create.c db.h db.c ourhdr.h ourhdr.c
+db-create: db-create.c db.h db.c lock-func.c ourhdr.h ourhdr.c
+	cc -o db-create.out -O2 db-create.c db.h db.c lock-func.c ourhdr.h ourhdr.c
 
 
 

@@ -136,7 +136,7 @@ db_fetch(DB *db, const char *key)
     char    *ptr;
     if (_db_find(db, key, 0) < 0) {
         ptr = NULL;     /* error, record not found */
-        db->cnt_fetcher++;
+        db->cnt_fetcherr++;
     } else {
         ptr = _db_readdat(db);  /* return pointer to data */
         db->cnt_fetchok++;
@@ -252,7 +252,7 @@ _db_readidx(DB *db, off_t offset)
          * calls us with offset==0, meaning read from current offset.
          * We still need to call lseek() to record the current offset.
          */
-    if ((db->idxoff = lseek(db-idxfd, offset,
+    if ((db->idxoff = lseek(db->idxfd, offset,
                     offset == 0 ? SEEK_CUR : SEEK_SET)) == -1)
         err_dump("lseek error");
     /* Read the ascii chain ptr and the ascii length at
@@ -261,7 +261,7 @@ _db_readidx(DB *db, off_t offset)
      */
     iov[0].iov_base = asciiptr;
     iov[0].iov_len = PTR_SZ;
-    iov[1].iov_base = assiilen;
+    iov[1].iov_base = asciilen;
     iov[1].iov_len = IDXLEN_SZ;
     if ((i = readv(db->idxfd, &iov[0], 2)) != PTR_SZ + IDXLEN_SZ) {
         if (i == 0 && offset == 0)
@@ -502,3 +502,210 @@ _db_writeptr(DB *db, off_t offset, off_t ptrval)
 }
 
     
+/* Store a record in the database.
+ * Return 0 if OK, 1 if record exists and DB_INSERT specified
+ * -1 if record doesn't exist and DB_REPLACE specified.
+ */
+int
+db_store(DB *db, const char *key, const char *data, int flag)
+{
+    int     rc, keylen, datlen;
+    off_t   ptrval;
+
+    keylen = strlen(key);
+    datlen = strlen(data) + 1;  /* +1 for newline at end */
+    if (datlen < DATLEN_MIN || datlen > DATLEN_MAX)
+        err_dump("invalid data length");
+        /* _db_find() calculates which hash table this new record
+         * goes into (db->chainoff), regardless whether it already
+         * exists or not. The calls to _db_writeptr() below
+         * the new record. This means the new record is added to 
+         * the front of the hash chain.
+         */
+
+    if (_db_find(db, key, 1) < 0) {     /* record not found */
+        if (flag & DB_REPLACE) {
+            rc = -1;    
+            db->cnt_storerr++;
+            goto doreturn;      /* error, record does not exist */
+        }
+            /* _db_find() locked the hash chain for us; read the
+             * chain ptr to the first index record on hash chain
+             */
+        ptrval = _db_readptr(db, db->chainoff);
+
+        if (_db_findfree(db, keylen, datlen) < 0) {
+            /* An empty record of the correct size was not found.
+             * We have to append the new record to the ends of
+             * the index and data files 
+             */
+            _db_writedat(db, data, 0, SEEK_END);
+            _db_writeidx(db, key, 0, SEEK_END, ptrval);
+                /* db->idxoff was set by _db_writeidx(). The new
+                 * record goes to the front of the hash chain.
+                 */
+            _db_writeptr(db, db->chainoff, db->idxoff);
+            db->cnt_stor1++;
+
+        } else {
+                /* We can reuse an empty record.
+                 * _db_findfree() removed the record from the free
+                 * list and set both db->datoff and db->idxoff.
+                 */
+            _db_writedat(db, data, db->datoff, SEEK_SET);
+            _db_writeidx(db, key, db->idxoff, SEEK_SET, ptrval);
+                /* reused record goes to the front of the hash chain */
+            _db_writeptr(db, db->chainoff, db->idxoff);
+            db->cnt_stor2++;
+
+        }
+    } else {            /* record found */
+        if (flag & DB_INSERT) {
+            rc = 1;
+            db->cnt_storerr++;
+            goto doreturn;  /* error, record already in db */
+
+        }
+            /* We are replacing an existing record. We know the new
+             * key equals the existing key, but we need to check if
+             * the data records are the same size.
+             */
+        if (datlen != db->datlen) {
+            _db_dodelete(db);   /* delete the existing record */
+
+                /* Reread the chain ptr in the hash table
+                 * (it may change with the deletion).
+                 */
+            ptrval = _db_readptr(db, db->chainoff);
+
+                /* append new index and data records to end of files */
+            _db_writedat(db, data, 0, SEEK_END);
+            _db_writeidx(db, key, 0, SEEK_END, ptrval);
+                /* new record goes to the front of the hash chain */
+            _db_writeptr(db, db->chainoff, db->idxoff);
+            db->cnt_stor3++;
+
+        } else {
+            /* same size data, just replace data record */
+            _db_writedat(db, data, db->datoff, SEEK_SET);
+            db->cnt_stor4++;
+
+        }
+    }
+    rc = 0;     /* OK */
+doreturn:   /* unlock the hash chain that _db_find() locked */
+    if (un_lock(db->idxfd, db->chainoff, SEEK_SET, 1) < 0)
+        err_dump("un_lock error");
+    return(rc);
+}
+
+/* Try to find a free indx record and accompanying data record
+ * of the correct sizes. We're only called by db_store().
+ */
+int
+_db_findfree(DB *db, int keylen, int datlen)
+{
+    int     rc;
+    off_t   offset, nextoffset, saveoffset;
+
+        /* Lock the free list */
+    saveoffset = FREE_OFF;
+    offset = _db_readptr(db, saveoffset);
+
+    while (offset != 0) {
+        nextoffset = _db_readidx(db, offset);
+        if ( strlen(db->idxbuf) == keylen && db->datlen == datlen )
+            break;      /* found a match */
+
+        saveoffset = offset;
+        offset = nextoffset;
+
+    }
+    
+    if (offset == 0)
+        rc = -1;    /* no match found */
+    else {
+            /* Found a free record with matching sizes.
+             * The index record was read in by _db_readidx() above,
+             * which sets db->ptrval. Also, saveoffset points to 
+             * the chain ptr that pointed to this empty record on
+             * the free list. We set this chain ptr to db->ptrval,
+             * which removes the empty record from the free list.
+             */
+        _db_writeptr(db, saveoffset, db->ptrval);
+        rc = 0;
+            /*  Notice also that _db_readidx() set both db->idxoff
+             *  and db->datoff. This is used by the caller, db_store(),
+             *  to write the new index record and data record.
+             */
+
+    }
+        /* Unlock the freee list */
+    if (un_lock(db->idxfd, FREE_OFF, SEEK_SET, 1) < 0)
+        err_dump("un_lock error");
+    return(rc);
+
+}
+
+/* Rewind the index file for db_nextrec().
+ * Automatically called by db_open().
+ * Must be called before first db_nextrec().
+ */
+
+void
+db_rewind(DB *db)
+{
+    off_t   offset;
+
+    offset = (db->nhash + 1) * PTR_SZ;  /* +1 for free list ptr */
+        /* We're just setting the file offset for this process
+         * to the start of the index records; no need to lock.
+         * +1 below for newline at end of hash table.
+         */
+    if ((db->idxoff = lseek(db->idxfd, offset+1, SEEK_SET)) == -1)
+        err_dump("lseek error");
+
+}
+
+/* Return the next sequential record.
+ * We just step our way through the index file, ignoring deleted
+ * records. db_rewind() must be called before this function is 
+ * called the file time.
+ */
+char *
+db_nextrec(DB *db, char *key)
+{
+    char    c, *ptr;
+        /* We read lock the free list so that we don't read
+         * a record in the middle of its being deleted.
+         */
+    if (readw_lock(db->idxfd, FREE_OFF, SEEK_SET, 1) < 0)
+        err_dump("readw_lock error");
+
+    do {
+            /* read next sequential index record */
+        if (_db_readidx(db, 0) < 0) {
+            ptr = NULL; /* end of index file, EOF */
+            goto doreturn;
+
+        }
+            /* check if key is all blank (empty record) */
+        ptr = db->idxbuf;
+        while ((c = *ptr++) != 0 && c == ' ')
+            ;   /* skip until null byte or nonblock */
+
+    } while (c == 0);  /* loop until a nonblank key is found */
+    
+    if (key != NULL)
+        strcpy(key, db->idxbuf); /* return key */
+    ptr = _db_readdat(db);  /* return pointer to data buffer */
+    db->cnt_nextrec++;
+doreturn:
+    if (un_lock(db->idxfd, FREE_OFF, SEEK_SET, 1) < 0)
+        err_dump("un_lock error");
+
+    return (ptr);
+
+
+}
+
