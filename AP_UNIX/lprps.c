@@ -7,7 +7,7 @@ main(int argc, char *argv[])
 {
     int     c;
 
-    log_open("lprps", LOG_PID, LOP_LPR);
+    log_open("lprps", LOG_PID, LOG_LPR);
 
     opterr = 0;     /* don't want getopt() writing to stderr */
     while ((c = getopt(argc, argv, "cdh:i:l:n:x:y:w")) != EOF) {

@@ -1,7 +1,7 @@
 #include    "lprps.h"
 
 static void
-sig_init(int signo)     /* SIGINT hanlder */
+sig_int(int signo)     /* SIGINT hanlder */
 {
     intr_flag = 1;
     return;

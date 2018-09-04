@@ -11,7 +11,7 @@ get_status(void){
     char    c;
 
     set_alrm(5);    /* 5 second timeout to fetch status */
-    tty_flush();/
+    tty_flush();
 
     c = '\024';
     block_write(&c, 1); /* send Control-T to printer */
@@ -20,7 +20,7 @@ get_status(void){
     while(status == INVALID)
         proc_some_input();  /* wait for something back */
     switch(status)  {
-        case IDLEL:    /* this is what we're looking for ... */
+        case IDLE:    /* this is what we're looking for ... */
             clear_alrm();
             return;
         case WAITING:   /* printer thinks it's in the middle of a job */

@@ -64,7 +64,8 @@ close_mailfp(void)
         if (fclose(mailfp) == EOF)
             log_sys("close_mailfp: fclose error");
         sprintf(command, MAILCMD, loginname, hostname, temp_file);
-        system(command);
+        if (system(command) < 0)
+            log_sys("close_mailfp: system error");
         unlink(temp_file);
     }
 }

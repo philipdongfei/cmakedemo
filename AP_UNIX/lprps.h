@@ -25,7 +25,7 @@ extern char *hostname;
 extern char *acct_file;
 extern char  eofc;  /* PS end-of-file (004) */
 extern int  debug;      /* true if interactive (not a daemon) */
-extern int  in job;     /* true if sending user's PS job to printer */
+extern int  in_job;     /* true if sending user's PS job to printer */
 extern int  psfd;       /* file descriptor for PostScript printer */
 extern int  start_page; /* starting page# */
 extern int  end_page;   /* ending page# */
@@ -59,7 +59,7 @@ void    mail_char(int);
 void    mail_line(const char *, const char *);
 
 void    msg_init(void); /* message.c */
-void    msg_char(void);
+void    msg_char(int);
 void    proc_msg(void);
 
 void    out_char(int);  /* output.c */

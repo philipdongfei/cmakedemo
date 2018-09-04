@@ -12,7 +12,7 @@
  "cvs "             /* convert to string */
  "print "           /* write to current output file */
  "( ]%% ) print "
- "flush\n"          /* flush current output file */
+ "flush\n";          /* flush current output file */
 
  /* Read the starting or ending pagecount from the printer.
   * The argument is either &start_page or &end_page.

@@ -5,7 +5,7 @@
 static  int block_flag = 1;     /* default is blocking I/O */
 
 void
-set_block(void);     /* turn off nonblocking flag */
+set_block(void)     /* turn off nonblocking flag */
 {                   /* called only by block_write() below */
     int     val;
 
@@ -70,6 +70,7 @@ tty_open(void)
     term.c_iflag = IXON | IXOFF | /* Xon|Xoff flow control */
                    IGNBRK |       /* ignore breaks */
                    ISTRIP |       /* strip input to 7 bits */
+                   IGNCR;       /* ignore received CR */
                 
     term.c_lflag = 0;        /* everything off in local flag:
                                 disables canonical mode, disables

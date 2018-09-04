@@ -151,6 +151,11 @@ ser-daemon: opend-daemonServ.c  opend-daemon.h opend-daemon.c log-daemon.c proc_
 	cc -o opend -O2 opend-daemonServ.c opend-daemon.h opend-daemon.c log-daemon.c proc_com_43pbds.c cs_43pbsd.c opend-select.c opend-request.c daemon-func.c ourhdr.h ourhdr.c
 db-create: db-create.c db.h db.c lock-func.c ourhdr.h ourhdr.c
 	cc -o db-create.out -O2 db-create.c db.h db.c lock-func.c ourhdr.h ourhdr.c
+lprps:	lprps.c acct.c alarm.c getstatus.c input.c interrupt.c mail.c message.c output.c pagecount.c \
+	sendfile.c tty.c vars.c sig_func.c log-daemon.c ourhdr.h ourhdr.c
+	cc -o lprps.out -O2	lprps.c acct.c alarm.c getstatus.c input.c interrupt.c mail.c message.c output.c pagecount.c \
+		sendfile.c tty.c vars.c sig_func.c log-daemon.c ourhdr.h ourhdr.c
+
 
 
 

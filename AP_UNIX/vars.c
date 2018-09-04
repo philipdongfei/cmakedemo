@@ -6,7 +6,7 @@ char    *acct_file;
 char    eofc = '\004';  /* Control-D = PostScript EOF */
 
 int     psfd = STDOUT_FILENO;
-int     start page = -1;
+int     start_page = -1;
 int     end_page = -1;
 int     debug;
 int     in_job;
