@@ -20,7 +20,7 @@ again:
     syslineno++;
 
     if ((sysptr->name = strtok(sysline, WHITE)) == NULL) {
-        if (syslineno[0] == '\n')
+        if (sysline[0] == '\n')
             goto again; /* ignore empty line */
         log_quit("missing 'name' in Systems file, line %d", syslineno);
 

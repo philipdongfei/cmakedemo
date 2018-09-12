@@ -12,10 +12,10 @@ dial_next(Dialers *dialptr) /* pointers in structure are filled in */
     if (fpdial == NULL) {
         if ((fpdial = fopen(DIALERS, "r")) == NULL)
             log_sys("can't open %s", DIALERS);
-        dialineno = 0;
+        diallineno = 0;
     }
 again:
-    if (fgets(dialine, MAXLINE, fpdial) == NULL)
+    if (fgets(dialline, MAXLINE, fpdial) == NULL)
         return(-1); /* EOF */
     diallineno++;
     if ((dialptr->dialer = strtok(dialline, WHITE)) == NULL) {

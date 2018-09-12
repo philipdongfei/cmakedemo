@@ -39,7 +39,7 @@ find_line(char *line)
             err_sys("can't alloc for lock array");
         lock_size += NALLOC;
     }
-    lptr = &lock[nlock++];
+    lptr = &lock[nlocks++];
     if ((lptr->line = malloc(strlen(line) + 1)) == NULL)
         log_sys("malloc error");
     strcpy(lptr->line, line);   /* copy caller's line name */
@@ -61,7 +61,7 @@ void
 lock_rel(pid_t pid)
 {
     Lock    *lptr;
-    for (lptr = &lock[0]; lptr < &lockp[nlocks]; lptr++) {
+    for (lptr = &lock[0]; lptr < &lock[nlocks]; lptr++) {
         if (lptr->pid == pid) {
             log_msg("unlocking %s for pid %d", lptr->line, pid);
             lptr->pid = 0;

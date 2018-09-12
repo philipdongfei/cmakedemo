@@ -20,6 +20,7 @@ extern int      debug;  /* nonzero if interactive (not daemon) */
 extern int      Debug;  /* nonzero for dialing debug output */
 extern char     errmsg[];   /* error message string to return to client */
 extern char     *speed;     /* speed (actually "class") to use */
+extern char     *sysname;   /* name of system to call */
 extern uid_t    uid;    /* client's uid */
 extern volatile sig_atomic_t    chld_flag;  /* when SIGCHLD occurs */
 extern enum parity { NONE, EVEN, ODD } parity;  /* specified by client */
@@ -42,6 +43,7 @@ extern Client   *client;    /* ptr to malloc'ed array of Client structs */
 extern int      client_size;    /* # entries in client[] array */
                 /* (both manipulated by client_XXX() functions) */
 
+typedef struct {
     char    *name;  /* system name */
     char    *time;  /* (e.g., "Any") time to call (ignored) */
     char    *type;  /* (e.g., "ACU") or system name if direct connect */
@@ -53,6 +55,9 @@ extern int      client_size;    /* # entries in client[] array */
 typedef struct {    /* everything for one entry in Devices file */
     char    *type;  /* (e.g., "ACU") matched by type in Systems */
     char    *line;  /* (e.g., "cua0") without preceding "/dev/" */
+    char    *line2; /* (ignored) */
+    char    *class; /* matched by class in Systems */
+    char    *dialer;    /* name of dialer in Dialers */
 
 }Devices;
 

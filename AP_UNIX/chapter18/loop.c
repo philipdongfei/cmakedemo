@@ -29,25 +29,6 @@ loop(void)
     maxfd = listenfd;
     maxi = -1;
 
-
-    int     i, n, maxfd, maxi, listenfd, nread;
-    char    buf[MAXLINE];
-    Client  *cliptr;
-    uid_t   uid;
-    fd_set  rset;
-
-    if (signal_intr(SIGCHLD, sig_chld) == SIG_ERR)
-        log_sys("signal error");
-
-            /* obtain descriptor to listen for client requests on */
-    if ((listenfd = serv_listen(CS_CALL)) < 0)
-        log_sys("serv_listen error");
-
-    FD_ZERO(&allset);
-    FD_SET(listenfd, &allset);
-    maxfd = listenfd;
-    maxi = -1;
-    
     for ( ; ;  ) {
         if (chld_flag)
             child_done(maxi);
@@ -191,7 +172,7 @@ again:
 
         }
     }
-    if (child_flag)     /* additional SIGCHLDs have been caught */
+    if (chld_flag)     /* additional SIGCHLDs have been caught */
         goto again;     /* need to check all childdone flags again */
 
 
