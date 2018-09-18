@@ -49,7 +49,7 @@ ptys_open(int fdm, char *pts_name)
         gid = -1;       /* group tty is not in the group file */
 
             /* following two functions don't work unless we're root */
-    chown(pts_name, getuid(), git);
+    chown(pts_name, getuid(), gid);
     chmod(pts_name, S_IRUSR | S_IWUSR | S_IWGRP);
     if ((fds = open(pts_name, O_RDWR)) < 0) {
         close(fdm);

@@ -62,7 +62,7 @@ main(int argc, char *argv[])
     else if (pid == 0) {    /* child */
         if (noecho)
             set_noecho(STDIN_FILENO);  /* stdin is slave pty */
-        i f(execvp(argv[optind], &argv[optind]) < 0)
+        if(execvp(argv[optind], &argv[optind]) < 0)
             err_sys("can't execute: %s", argv[optind]);
 
     }

@@ -18,7 +18,7 @@ pty_fork(int *ptrfdm, char *slave_name,
         err_sys("can't open master pty: %s", pts_name);
     if (slave_name != NULL)
         strcpy(slave_name, pts_name);   /* return name of slave */
-    i f((pid = fork()) < 0)
+    if ((pid = fork()) < 0)
         return (-1);
     else if (pid == 0) {    /* child */
         if (setsid() < 0)

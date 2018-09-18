@@ -156,6 +156,9 @@ lprps:	lprps.c acct.c alarm.c getstatus.c input.c interrupt.c mail.c message.c o
 	cc -o lprps.out -O2	lprps.c acct.c alarm.c getstatus.c input.c interrupt.c mail.c message.c output.c pagecount.c \
 		sendfile.c tty.c vars.c sig_func.c log-daemon.c ourhdr.h ourhdr.c
 
+ptydemo: ptymain.c dodriver.c ptyloop.c ptyfork.c ptyopen_43bsd.c ptyopen.h term-func.c sig_func.c spipe_func.c io-func.c ourhdr.h ourhdr.c
+	cc -o ptydemo.out -O2 ptymain.c dodriver.c ptyloop.c ptyfork.c ptyopen_43bsd.c ptyopen.h term-func.c sig_func.c spipe_func.c io-func.c ourhdr.c ourhdr.h
+
 
 
 
